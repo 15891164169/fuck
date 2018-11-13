@@ -1,0 +1,1 @@
+export const LUNBO_STATUS = 'LUNBO_STATUS'
