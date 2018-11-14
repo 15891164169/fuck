@@ -13,6 +13,9 @@ import '@/assets/css/common.css'
 import '@/lib/mui/css/mui.min.css'
 import '@/lib/mui/fonts/icons-extra.css'
 
+// vue-preview
+import VuePreview from 'vue-preview'
+
 // mint-ui
 import { Header, Swipe, SwipeItem, Lazyload } from 'mint-ui'
 
@@ -26,6 +29,8 @@ Vue.use(Lazyload, {
   error: require('./assets/test.png'),
   attempt: 1
 })
+
+Vue.use(VuePreview)
 
 Vue.config.productionTip = false
 

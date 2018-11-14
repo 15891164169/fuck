@@ -13,18 +13,20 @@
         </li> -->
       </ul>
     </div>
-    <!-- <p @click="refs">asdasdas</p> -->
 
     <!-- 图片列表区域 -->
 
     <div class="img-wrapper">
       <ul class="img-lists">
-        <li class="img-list" v-for="(item, index) in imgCateLists" :key="index">
+        <router-link :to="'/home/photoinfo/' + item.id" class="img-list" v-for="(item, index) in imgCateLists" :key="index" tag="li">
           <!-- <img :src="img1" alt=""> -->
           <img v-lazy.img-wrapper="item.img_url" alt="稍等~请求图片中">
           <!-- <img v-lazy="my_img_url"> -->
-          <!-- <p>暗示撒撒</p> -->
-        </li>
+          <div class="im-introduce">
+            <h2>{{ item.title }}</h2>
+            <p>{{ item.zhaiyao }}</p>
+          </div>
+        </router-link>
       </ul>
       <p v-show="!imgCateLists.length" class="tips">很懒&nbsp;&nbsp;&nbsp;&nbsp;(*￣︶￣)&nbsp;&nbsp;&nbsp;!</p>
     </div>
@@ -72,6 +74,7 @@ export default {
         // console.log(newRes)
         // this.imgCateLists = newRes
         this.imgCateLists = res
+        console.log(res)
       })
     }
   }
@@ -79,10 +82,10 @@ export default {
 </script>
 
 <style scoped lang="less">
-* {
-  touch-action: pan-x;
-  touch-action: pan-y;
-}
+// * {
+//   touch-action: pan-x;
+//   touch-action: pan-y;
+// }
 
 .photolist {
   -position: relative;
@@ -121,10 +124,12 @@ export default {
       padding: 10px;
       box-sizing: border-box;
       .img-list {
-        -position: relative;
-        padding: 4px;
+        position: relative;
+        -padding: 8px;
+        margin: 0 0 10px 0;
+        box-shadow: 0 0 9px #999;
         box-sizing: border-box;
-        text-align: center;
+        -text-align: center;
         // -webkit-box-shadow:0px 0px 2px #333333;
           //  -moz-box-shadow:0px 0px 2px #333333;
                 // box-shadow:0px 0px 2px #333333;
@@ -135,16 +140,36 @@ export default {
           vertical-align: middle;
           width: 100%;
           border: 1px solid rgb(202, 208, 209);
-          box-sizing: border-box;
         }
         img[lazy=loading] {
           width: 100%;
           margin: auto;
         }
-        p {
-          -position: absolute;
+        .im-introduce {
+          position: absolute;
           bottom: 0;
-          margin-bottom: 0;
+          background-color: rgba(0,0,0,0.4);
+          color: #fff;
+          text-align: left;
+          width: 100%;
+          h2 {
+            font-size: 14px;
+            margin-top: 0;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+          p {
+            color: #fff;
+            font-size: 13px;
+            margin-bottom: 0;
+            max-height: 80px;
+            display: -webkit-box;
+            // 多行超出隐藏
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            overflow: hidden;
+          }
         }
       }
     }

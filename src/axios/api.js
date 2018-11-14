@@ -32,3 +32,17 @@ export const getimages = data => {
     data
   })
 }
+
+export const getimageInfo = data => {
+  return service({
+    url: 'getimageInfo/' + data.imgid,
+    data
+  })
+}
+
+export const getthumimages = data => {
+  return service({
+    url: 'getthumimages/' + data.imgid,
+    data
+  })
+}
