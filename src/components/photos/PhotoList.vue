@@ -2,93 +2,12 @@
   <div class="photolist">
     <div id="wrapper">
       <ul>
-        <li class="warp">
-          <p>推荐</p>
+        <li v-for="(item, index) in lists" class="warp" :key="index">
+          <p>{{ item.title }}</p>
         </li>
-        <li class="warp">
+        <!-- <li class="warp">
           <p>推荐</p>
-        </li>
-        <li class="warp">
-          <p>推荐</p>
-        </li>
-        <li class="warp">
-          <p>推荐</p>
-        </li>
-        <li class="warp">
-          <p>推荐</p>
-        </li>
-        <li class="warp">
-          <p>推荐</p>
-        </li>
-        <li class="warp">
-          <p>推荐</p>
-        </li>
-        <li class="warp">
-          <p>推荐</p>
-        </li>
-        <li class="warp">
-          <p>推荐</p>
-        </li>
-        <li class="warp">
-          <p>推荐</p>
-        </li>
-        <li class="warp">
-          <p>推荐</p>
-        </li>
-        <li class="warp">
-          <p>推荐</p>
-        </li>
-        <li class="warp">
-          <p>推荐</p>
-        </li>
-        <li class="warp">
-          <p>推荐</p>
-        </li>
-        <li class="warp">
-          <p>推荐</p>
-        </li>
-        <li class="warp">
-          <p>推荐</p>
-        </li>
-        <li class="warp">
-          <p>推荐</p>
-        </li>
-        <li class="warp">
-          <p>推荐</p>
-        </li>
-        <li class="warp">
-          <p>推荐</p>
-        </li>
-        <li class="warp">
-          <p>推荐</p>
-        </li>
-        <li class="warp">
-          <p>推荐</p>
-        </li>
-        <li class="warp">
-          <p>推荐</p>
-        </li>
-        <li class="warp">
-          <p>推荐</p>
-        </li>
-        <li class="warp">
-          <p>推荐</p>
-        </li>
-        <li class="warp">
-          <p>推荐</p>
-        </li>
-        <li class="warp">
-          <p>推荐</p>
-        </li>
-        <li class="warp">
-          <p>推荐</p>
-        </li>
-        <li class="warp">
-          <p>推荐</p>
-        </li>
-        <li class="warp">
-          <p>推荐</p>
-        </li>
+        </li> -->
       </ul>
     </div>
     <!-- <p @click="refs">asdasdas</p> -->
@@ -97,21 +16,32 @@
 
 <script>
 // import mui from '@/lib/mui/js/mui.min.js'
-import IScroll from 'iscroll'
+// import IScroll from 'iscroll'
+import { getimgcategory } from '@/axios/api.js'
 
 export default {
   name: 'Photolist',
   data () {
     return {
-
+      lists: []
     }
+  },
+  created () {
+    getimgcategory().then(res => {
+      let resData = res
+      resData.unshift({title: '全部', id: 0})
+      this.lists = resData
+    })
   }
 }
 </script>
 
 <style scoped lang="less">
+* {
+  touch-action: pan-x;
+}
 #wrapper {
-  height: 100px;
+  -height: 100px;
 }
 .photolist {
   ul {
@@ -130,5 +60,9 @@ export default {
       }
     }
   }
+}
+
+ul::-webkit-scrollbar {
+    display: none;
 }
 </style>

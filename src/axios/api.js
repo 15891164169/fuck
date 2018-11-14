@@ -18,3 +18,10 @@ export const getnewsinfo = data => {
     data
   })
 }
+
+export const getimgcategory = data => {
+  return service({
+    url: 'getimgcategory/',
+    data
+  })
+}
