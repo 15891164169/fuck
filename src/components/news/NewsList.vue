@@ -64,8 +64,6 @@ export default {
     justify-content: space-between;
     color: #26a2ff;
     font-size: 12px;
-    span {
-    }
   }
 }
 </style>
