@@ -2,7 +2,7 @@
   <div class="photolist">
     <div id="wrapper">
       <ul>
-        <li class="warp" @click="refs">
+        <li class="warp">
           <p>推荐</p>
         </li>
         <li class="warp">
@@ -115,7 +115,7 @@ export default {
   },
   methods: {
     refs () {
-      alert(1)
+      console.log(1)
       this.rr.refresh()
     }
   }
@@ -124,7 +124,7 @@ export default {
 
 <style scoped lang="less">
 #wrapper {
-  height: 100%;
+  height: 100px;
 }
 .photolist {
   ul {

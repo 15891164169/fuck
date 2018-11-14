@@ -17,7 +17,7 @@ service.interceptors.request.use(config => {
   // 若为get请求 参数放在params里
   config.methods === 'post' ? (config.data = qs.stringify({...config.data})) : (config.params = { ...config.params })
   // config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
-  console.log(config)
+  // console.log(config)
   return config
 }, error => { // 请求错误处理
   return Promise.reject(error)
