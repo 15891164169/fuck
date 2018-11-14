@@ -3,7 +3,7 @@
 
     <!-- 顶部nav区域 -->
 
-    <div id="wrapper">
+    <div id="wrapper" class="nav-wrapper">
       <ul class="nav-list">
         <li v-for="(item, index) in navLists" class="item" :key="index">
           <p :class="activeIndex === item.id ? 'active' : ''" @click="getData(item.id)">{{ item.title }}</p>
@@ -23,7 +23,7 @@
           <!-- <img :src="img1" alt=""> -->
           <img v-lazy.img-wrapper="item.img_url" alt="稍等~请求图片中">
           <!-- <img v-lazy="my_img_url"> -->
-          <p>暗示撒撒</p>
+          <!-- <p>暗示撒撒</p> -->
         </li>
       </ul>
       <p v-show="!imgCateLists.length" class="tips">很懒&nbsp;&nbsp;&nbsp;&nbsp;(*￣︶￣)&nbsp;&nbsp;&nbsp;!</p>
@@ -83,32 +83,34 @@ export default {
   touch-action: pan-x;
   touch-action: pan-y;
 }
-#wrapper {
-  -position: absolute;
-  -height: 100px;
-  background-color: #fff;
-}
+
 .photolist {
   -position: relative;
-  .nav-list {
-    display: flex;
-    padding: 2px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    li {
-      display: inline-block;
-      padding: 4px 10px;
-      p {
-        display: block;
-        margin-bottom: 0;
-        padding: 2px 4px;
-        white-space: nowrap;
-        box-sizing: border-box;
-        text-align: center;
-        &.active {
-          color: #26a2ff;
-          border-bottom: 1px solid #000;
-          -transition: all .5s ease;
+  .nav-wrapper {
+    -position: absolute;
+    -height: 100px;
+    background-color: #fff;
+    .nav-list {
+      display: flex;
+      padding: 2px;
+      border-bottom: 1px solid rgb(228, 236, 238);
+      overflow-x: auto;
+      overflow-y: hidden;
+      li {
+        display: inline-block;
+        padding: 4px 10px;
+        p {
+          display: block;
+          margin-bottom: 0;
+          padding: 2px 4px;
+          white-space: nowrap;
+          box-sizing: border-box;
+          text-align: center;
+          &.active {
+            color: #26a2ff;
+            border-bottom: 1px solid #000;
+            -transition: all .5s ease;
+          }
         }
       }
     }
@@ -116,24 +118,31 @@ export default {
   .img-wrapper {
     -margin-top: 34px;
     .img-lists {
-      padding: 8px;
+      padding: 10px;
+      box-sizing: border-box;
       .img-list {
-        position: relative;
+        -position: relative;
+        padding: 4px;
+        box-sizing: border-box;
         text-align: center;
+        // -webkit-box-shadow:0px 0px 2px #333333;
+          //  -moz-box-shadow:0px 0px 2px #333333;
+                // box-shadow:0px 0px 2px #333333;
+         &:last-child {
+           padding-bottom: 0;
+         }
         img {
-          padding: 4px;
-          width: 360px;
-          height: 280px;
+          vertical-align: middle;
+          width: 100%;
           border: 1px solid rgb(202, 208, 209);
           box-sizing: border-box;
         }
         img[lazy=loading] {
-          width: 360px;
-          height: 280px;
+          width: 100%;
           margin: auto;
         }
         p {
-          position: absolute;
+          -position: absolute;
           bottom: 0;
           margin-bottom: 0;
         }
