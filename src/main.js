@@ -14,11 +14,13 @@ import '@/lib/mui/css/mui.min.css'
 import '@/lib/mui/fonts/icons-extra.css'
 
 // mint-ui
-import { Header, Swipe, SwipeItem } from 'mint-ui'
+import { Header, Swipe, SwipeItem, Lazyload } from 'mint-ui'
 
 Vue.component(Header.name, Header)
 Vue.component(Swipe.name, Swipe)
 Vue.component(SwipeItem.name, SwipeItem)
+Vue.component(SwipeItem.name, SwipeItem)
+Vue.use(Lazyload)
 
 Vue.config.productionTip = false
 

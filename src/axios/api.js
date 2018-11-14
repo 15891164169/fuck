@@ -21,7 +21,14 @@ export const getnewsinfo = data => {
 
 export const getimgcategory = data => {
   return service({
-    url: 'getimgcategory/',
+    url: 'getimgcategory',
+    data
+  })
+}
+
+export const getimages = data => {
+  return service({
+    url: 'getimages/' + data.cateid,
     data
   })
 }
