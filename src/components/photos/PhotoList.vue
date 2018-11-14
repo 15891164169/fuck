@@ -26,7 +26,7 @@
           <p>暗示撒撒</p>
         </li>
       </ul>
-      <p v-show="!imgCateLists.length">什么都没</p>
+      <p v-show="!imgCateLists.length" class="tips">很懒&nbsp;&nbsp;&nbsp;&nbsp;(*￣︶￣)&nbsp;&nbsp;&nbsp;!</p>
     </div>
   </div>
 </template>
@@ -92,6 +92,7 @@ export default {
   -position: relative;
   .nav-list {
     display: flex;
+    padding: 2px;
     overflow-x: auto;
     overflow-y: hidden;
     li {
@@ -137,6 +138,10 @@ export default {
           margin-bottom: 0;
         }
       }
+    }
+    .tips {
+      margin-bottom: 0;
+      text-align: center;
     }
   }
 }
