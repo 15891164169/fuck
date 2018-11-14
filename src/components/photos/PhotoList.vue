@@ -103,20 +103,7 @@ export default {
   name: 'Photolist',
   data () {
     return {
-      rr: null
-    }
-  },
-  created () {
-  },
-  mounted () {
-    this.rr = new IScroll('#wrapper', {
-      mouseWheel: true
-    })
-  },
-  methods: {
-    refs () {
-      console.log(1)
-      this.rr.refresh()
+
     }
   }
 }
@@ -128,9 +115,19 @@ export default {
 }
 .photolist {
   ul {
-    -display: flex;
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
     li {
-      width: 100%;
+      display: inline-block;
+        padding: 4px 10px;
+      p {
+        display: block;
+        margin-bottom: 0;
+        width: 80px;
+        box-sizing: border-box;
+        text-align: center;
+      }
     }
   }
 }
