@@ -21,8 +21,8 @@
       <ul class="img-lists">
         <li class="img-list" v-for="(item, index) in imgCateLists" :key="index">
           <!-- <img :src="img1" alt=""> -->
-          <!-- <img v-lazy="img1"> -->
-          <img v-lazy="my_img_url">
+          <img v-lazy.img-wrapper="item.img_url" alt="稍等~请求图片中">
+          <!-- <img v-lazy="my_img_url"> -->
           <p>暗示撒撒</p>
         </li>
       </ul>
@@ -63,14 +63,15 @@ export default {
     },
     getimages (cateid) {
       getimages({cateid: cateid}).then(res => {
-        let newRes = res.map((item, index) => {
-          if (item.img_url) {
-            item.img_url = '../../assets/logo.png'
-          }
-          return item
-        })
-        console.log(newRes)
-        this.imgCateLists = newRes
+        // let newRes = res.map((item, index) => {
+        //   if (item.img_url) {
+        //     item.img_url = '../../assets/logo.png'
+        //   }
+        //   return item
+        // })
+        // console.log(newRes)
+        // this.imgCateLists = newRes
+        this.imgCateLists = res
       })
     }
   }
@@ -80,6 +81,7 @@ export default {
 <style scoped lang="less">
 * {
   touch-action: pan-x;
+  touch-action: pan-y;
 }
 #wrapper {
   -position: absolute;
@@ -111,23 +113,34 @@ export default {
     }
   }
   .img-wrapper {
-    margin-top: 34px;
+    -margin-top: 34px;
     .img-lists {
+      padding: 8px;
       .img-list {
+        position: relative;
+        text-align: center;
         img {
-          width: 100%;
+          padding: 4px;
+          width: 360px;
+          height: 280px;
+          border: 1px solid rgb(202, 208, 209);
+          box-sizing: border-box;
         }
-        p {}
+        img[lazy=loading] {
+          width: 360px;
+          height: 280px;
+          margin: auto;
+        }
+        p {
+          position: absolute;
+          bottom: 0;
+          margin-bottom: 0;
+        }
       }
     }
   }
 }
 
-img[lazy=loading] {
-  width: 40px;
-  height: 300px;
-  margin: auto;
-}
 ul::-webkit-scrollbar {
     display: none;
 }

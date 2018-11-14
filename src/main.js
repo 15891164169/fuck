@@ -20,7 +20,12 @@ Vue.component(Header.name, Header)
 Vue.component(Swipe.name, Swipe)
 Vue.component(SwipeItem.name, SwipeItem)
 Vue.component(SwipeItem.name, SwipeItem)
-Vue.use(Lazyload)
+Vue.use(Lazyload, {
+  preLoad: 2,
+  loading: require('./assets/test.gif'),
+  error: require('./assets/test.png'),
+  attempt: 1
+})
 
 Vue.config.productionTip = false
 
