@@ -17,7 +17,7 @@
             销售价:<span class="now-price">￥{{ goodsinfo.sell_price }}</span>
           </p>
           <p>
-            购买数量&nbsp;:&nbsp;&nbsp;<goodsinfonumbox></goodsinfonumbox>
+            购买数量&nbsp;:&nbsp;&nbsp;<goodsinfonumbox @accountNum="getNum" :maxNum="goodsinfo.stock_quantity"></goodsinfonumbox>
             </p>
           <p class="btn-box">
             <mt-button type="primary" size="small">立即购买</mt-button>
@@ -46,7 +46,7 @@
       @before-enter="beforeEnter"
       @enter="enter"
       @after-enter="afterEnter">
-      <div class="ball" v-show="ballFlag"></div>
+      <div class="ball" v-show="ballFlag" ref="ball"></div>
     </transition>
   </div>
 </template>
@@ -63,7 +63,8 @@ export default {
       id: this.$route.params.id,
       lunboData: [],
       goodsinfo: [],
-      ballFlag: false
+      ballFlag: false,
+      num: 1
     }
   },
   created () {
@@ -100,12 +101,17 @@ export default {
     },
     enter (el, done) {
       // el.offsetWidth
+      // console.log(this.$refs.ball.getBoundingClientRect().top)
       el.style.transform = 'translate(97px,246px)'
       el.style.transition = 'all 1s cubic-bezier(.58,.24,.84,.27)'
       done()
     },
     afterEnter (el) {
       this.ballFlag = !this.ballFlag
+    },
+    getNum (data) {
+      // console.log(data)
+      this.num = data
     }
   },
   components: {
