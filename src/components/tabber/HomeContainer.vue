@@ -3,11 +3,7 @@
 
     <!-- 轮播图区域 -->
 
-    <mt-swipe v-if="lunbotuList">
-      <mt-swipe-item v-for="(list, index) in lunbotuList" :key="index">
-        <img :src="list.img" alt="img">
-      </mt-swipe-item>
-    </mt-swipe>
+    <swiper :lunboData="lunboData" :isfull="isfull"></swiper>
 
     <!-- 九宫格区域 -->
 
@@ -53,34 +49,33 @@
 </template>
 
 <script>
+import swiper from '@/components/common/swiper.vue'
 // import { Toast } from 'mint-ui'
 import { getLunBo } from '@/axios/api.js'
 export default {
   name: 'Home',
   data () {
     return {
-      lunbotuList: []
+      lunboData: [],
+      isfull: true
     }
   },
   created () {
     let getLunBoRES = getLunBo()
     getLunBoRES.then(res => {
-      this.lunbotuList = res
+      this.lunboData = res
     })
   },
-  methods: {
+  components: {
+    swiper
   }
 }
 </script>
 
 <style scoped lang="less">
 .home {
-  .mint-swipe {
+  .swiper {
     height: 180px;
-    img {
-      width: 100%;
-      height: 100%;
-    }
   }
   .mui-grid-view.mui-grid-9 {
     background-color: #fff;

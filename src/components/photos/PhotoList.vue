@@ -74,7 +74,7 @@ export default {
         // console.log(newRes)
         // this.imgCateLists = newRes
         this.imgCateLists = res
-        console.log(res)
+        // console.log(res)
       })
     }
   }

@@ -60,3 +60,11 @@ export const getgoodsdesc = data => {
     data
   })
 }
+//
+
+export const getgoodsinfo = data => {
+  return service({
+    url: 'goods/getinfo/' + data.id,
+    data
+  })
+}

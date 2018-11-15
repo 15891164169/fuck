@@ -1,48 +1,141 @@
 <template>
   <div class="goodsinfo">
-    <!-- <h2>{{id}}</h2> -->
-    <h2 class="title">{{ goodsdesc.title }}</h2>
-    <div class="goods-detail" ref="col" v-html="goodsdesc.content"></div>
+    <div class="mui-card lunbotu">
+      <div class="mui-card-content">
+        <div class="mui-card-content-inner">
+          <swiper :lunboData="lunboData"></swiper>
+        </div>
+      </div>
+    </div>
+
+    <div class="mui-card">
+      <div class="mui-card-header">{{ goodsinfo.title }}</div>
+      <div class="mui-card-content">
+        <div class="mui-card-content-inner">
+          <p class="price">
+            市场价:<del>￥{{ goodsinfo.market_price }}</del>&nbsp;&nbsp;&nbsp;
+            销售价:<span class="now-price">￥{{ goodsinfo.sell_price }}</span>
+          </p>
+          <p>
+            购买数量&nbsp;:&nbsp;&nbsp;<goodsinfonumbox></goodsinfonumbox>
+            </p>
+          <p class="btn-box">
+            <mt-button type="primary" size="small">立即购买</mt-button>
+            <mt-button type="danger" size="small" @click="addToShopCar()">加入购物车</mt-button>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mui-card">
+      <div class="mui-card-header">商品参数</div>
+      <div class="mui-card-content">
+        <div class="mui-card-content-inner">
+          <p>商品货号:{{ goodsinfo.goods_no }}</p>
+          <p>库存情况:{{ goodsinfo.stock_quantity }}</p>
+          <p>上架时间:{{ goodsinfo.add_time }}</p>
+        </div>
+      </div>
+      <div class="mui-card-footer">
+        <mt-button type="primary" size="large" plain @click="goDesc(id)">图文介绍</mt-button>
+        <mt-button type="danger" size="large" plain @click="goComment(id)">商品评论</mt-button>
+      </div>
+    </div>
+
+    <transition
+      @before-enter="beforeEnter"
+      @enter="enter"
+      @after-enter="afterEnter">
+      <div class="ball" v-show="ballFlag"></div>
+    </transition>
   </div>
 </template>
 
 <script>
-import { getgoodsdesc } from '@/axios/api.js'
+import swiper from '@/components/common/swiper.vue'
+import goodsinfonumbox from '@/components/common/goodsinfo-numbox.vue'
+
+import { getthumimages, getgoodsinfo } from '@/axios/api.js'
 export default {
-  name: '',
+  name: 'Goodsinfo',
   data () {
     return {
       id: this.$route.params.id,
-      goodsdesc: []
+      lunboData: [],
+      goodsinfo: [],
+      ballFlag: false
     }
   },
   created () {
-    this.getgoodsdesc({id: this.id})
+    this.getthumimages({imgid: this.id})
+    this.getgoodsinfo({id: this.id})
   },
   methods: {
-    getgoodsdesc (id) {
-      getgoodsdesc(id).then(res => {
-        this.goodsdesc = res[0]
+    getthumimages (idx) {
+      getthumimages(idx).then(res => {
+        res.forEach(item => {
+          item.img = item.src
+        })
+        this.lunboData = res
       })
+    },
+    getgoodsinfo (idx) {
+      getgoodsinfo(idx).then(res => {
+        this.goodsinfo = res[0]
+        // console.log(this.goodsinfo)
+      })
+    },
+    goDesc (id) {
+      this.$router.push({ name: 'GoodsDesc', params: id })
+    },
+    goComment (id) {
+      this.$router.push({ name: 'GoodsComment', params: id })
+    },
+    addToShopCar () {
+      this.ballFlag = !this.ballFlag
+    },
+    beforeEnter (el) {
+      el.style.transform = 'translate(0,0)'
+      console.log(el.getBoundingClientRect())
+    },
+    enter (el, done) {
+      // el.offsetWidth
+      el.style.transform = 'translate(97px,246px)'
+      el.style.transition = 'all 1s cubic-bezier(.58,.24,.84,.27)'
+      done()
+    },
+    afterEnter (el) {
+      this.ballFlag = !this.ballFlag
     }
+  },
+  components: {
+    swiper,
+    goodsinfonumbox
   }
 }
 </script>
 
-<style scoped lang="less">
+<style scoped  lang="less">
 .goodsinfo {
-  padding: 4px;
-  .title {
-    padding: 8px 2px;
-    font-size: 22px;
-    text-align: center;
-    box-sizing: border-box;
+  -background-color: #eee;
+  .now-price {
+    color: red;
   }
-  .goods-detail {
-    width: 100%;
-    p {
-      color: red !important;
+  .mui-card-footer {
+    display: block;
+    button {
+      margin: 10px 0;
     }
+  }
+  .ball {
+    position: absolute;
+    top: 370px;
+    left: 150px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: red;
+    z-index: 99;
   }
 }
 </style>

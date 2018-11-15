@@ -2,7 +2,7 @@
   <div class="goodslist">
     <!-- https://i2.hdslb.com/bfs/face/64fd706dea1b940f3dfc21d3fe008ab4412e9b56.jpg@72w_72h.webp -->
     <div class="list-items">
-      <router-link :to='"/home/goodslist/goodsinfo/" + item.id' tag="div" v-for="(item, idx) in goodslists" class="list-item" :key="idx">
+      <div v-for="(item, idx) in goodslists" class="list-item" :key="idx" @click="goDetail(item.id)">
         <div class="img-title">
           <img src="https://i2.hdslb.com/bfs/face/64fd706dea1b940f3dfc21d3fe008ab4412e9b56.jpg@72w_72h.webp" alt="">
           <p class="title">{{ item.title }}</p>
@@ -17,7 +17,7 @@
             <span class="last">剩{{ item.stock_quantity }}件</span>
           </div>
         </div>
-      </router-link>
+      </div>
     </div>
 
     <div class="lordMore" @click="lordMore()">加载更多</div>
@@ -40,7 +40,7 @@ export default {
   methods: {
     getgoods (idx) {
       getgoods(idx).then(res => {
-        console.log(res)
+        // console.log(res)
         this.goodslists = this.goodslists.concat(res)
       })
     },
@@ -48,6 +48,10 @@ export default {
       this.pgIdx++
       let idx = this.pgIdx
       this.getgoods({pageindex: idx})
+    },
+    goDetail (id) {
+      // this.$router.push('/home/goodsinfo/' + id)
+      this.$router.push({ name: 'GoodsInfo', params: { id: id } })
     }
   }
 }
