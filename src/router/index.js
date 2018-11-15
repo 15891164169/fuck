@@ -13,6 +13,7 @@ import PhotoList from '@/components/photos/PhotoList.vue'
 import PhotoInfo from '@/components/photos/PhotoInfo.vue'
 
 import GoodsList from '@/components/goods/GoodsList.vue'
+import GoodsInfo from '@/components/goods/GoodsInfo.vue'
 
 Vue.use(Router)
 
@@ -58,6 +59,10 @@ export default new Router({
     {
       path: '/home/goodslist',
       component: GoodsList
+    },
+    {
+      path: '/home/goodslist/goodsinfo/:id',
+      component: GoodsInfo
     }
 
   ],

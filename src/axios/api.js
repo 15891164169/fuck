@@ -46,3 +46,17 @@ export const getthumimages = data => {
     data
   })
 }
+// getgoods?pageindex=number
+export const getgoods = data => {
+  return service({
+    url: 'getgoods?pageindex' + data.pageindex,
+    data
+  })
+}
+// goods/getdesc/:id
+export const getgoodsdesc = data => {
+  return service({
+    url: 'goods/getdesc/' + data.id,
+    data
+  })
+}
