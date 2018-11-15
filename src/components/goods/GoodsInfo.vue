@@ -2,7 +2,7 @@
   <div class="goodsinfo">
     <!-- <h2>{{id}}</h2> -->
     <h2 class="title">{{ goodsdesc.title }}</h2>
-    <div class="goods-detail" @click="fc" ref="col" v-html="goodsdesc.content"></div>
+    <div class="goods-detail" ref="col" v-html="goodsdesc.content"></div>
   </div>
 </template>
 
@@ -22,12 +22,8 @@ export default {
   methods: {
     getgoodsdesc (id) {
       getgoodsdesc(id).then(res => {
-        // console.log(res[0])
         this.goodsdesc = res[0]
       })
-    },
-    fc () {
-      this.$refs.col.getElementsByTagName('img').style.textAlign = 'center'
     }
   }
 }

@@ -41,14 +41,13 @@ export default {
     getgoods (idx) {
       getgoods(idx).then(res => {
         console.log(res)
-        this.goodslists = res
+        this.goodslists = this.goodslists.concat(res)
       })
     },
     lordMore () {
-      // this.pgIdx++
-      // let idx = this.pgIdx
-      // console.log(idx)
-      // this.getgoods({pageindex: idx})
+      this.pgIdx++
+      let idx = this.pgIdx
+      this.getgoods({pageindex: idx})
     }
   }
 }
