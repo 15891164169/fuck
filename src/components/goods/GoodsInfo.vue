@@ -17,7 +17,7 @@
             销售价:<span class="now-price">￥{{ goodsinfo.sell_price }}</span>
           </p>
           <p>
-            购买数量&nbsp;:&nbsp;&nbsp;<goodsinfonumbox @accountNum="getNum" :maxNum="goodsinfo.stock_quantity"></goodsinfonumbox>
+            购买数量&nbsp;:&nbsp;&nbsp;<goodsinfonumbox @sendNum="getNum" :maxNum="goodsinfo.stock_quantity"></goodsinfonumbox>
             </p>
           <p class="btn-box">
             <mt-button type="primary" size="small">立即购买</mt-button>
@@ -111,7 +111,7 @@ export default {
       this.ballFlag = !this.ballFlag
     },
     getNum (data) {
-      // console.log(data)
+      console.log(data)
       this.num = data
     }
   },
