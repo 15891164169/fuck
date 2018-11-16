@@ -65,9 +65,12 @@ export default {
     flex-wrap: wrap;
     justify-content: space-between;
     .list-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       margin-bottom: 6px;
       width: 172px;
-      min-height: 232px;
+      min-height: 220px;
       color: #000;
       border: 1px solid #ccc;
       box-shadow: 0 0 8px #ccc;

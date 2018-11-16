@@ -88,7 +88,6 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
-  .mint-header {}
   .content {
     height: 100%;
     flex: 1;
@@ -100,7 +99,7 @@ export default {
     justify-content: space-around;
     height: 50px;
     line-height: 50px;
-    background-color: #efeff4;
+    background-color: rgb(218, 218, 218);
     font-size: 12px;
     a {
       flex: 1;
