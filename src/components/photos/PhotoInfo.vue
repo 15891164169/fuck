@@ -62,7 +62,7 @@ export default {
 }
 </script>
 
-<style scoped lang="less">
+<style lang="less">
 .photoinfo {
   padding: 4px;
   box-sizing: border-box;
@@ -85,11 +85,16 @@ export default {
     .cick {}
   }
   .prev-box {
-    figure {
-      padding: 0;
-      width: 170px;
-      margin: 0;
-      margin: 0 !important;
+    .my-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      figure {
+        padding: 10px 10px;
+        img {
+          width: 150px;
+        }
+      }
     }
   }
   p {
