@@ -1,22 +1,17 @@
 import { ADD_TO_SHOP_CART, CREATE_SHOPCAR__ITEM, INCREMENT_SHOPCAR__ITEM } from './mutation-types.js'
 
 // const cart = {
-//   id: '',
-//   count: '',
-//   price: '',
+//   id: 87,
+//   count: 1,
+//   price: 99,
 //   selected: false
 // }
 
+const car = JSON.parse(localStorage.getItem('car')) || []
+
 export default {
   state: {
-    cars: [
-      // {
-      //   id: 87,
-      //   count: 1,
-      //   price: 99,
-      //   selected: false
-      // }
-    ]
+    cars: car
   },
   getters: {
     allCount (state) {
@@ -25,6 +20,9 @@ export default {
         count += item.count
       })
       return count
+    },
+    indexCount (state, productObj) {
+      console.log(productObj)
     }
   },
   mutations: {
@@ -38,6 +36,7 @@ export default {
         price: productObj[0].sell_price,
         selected: false
       })
+      localStorage.setItem('car', JSON.stringify(state.cars))
     },
     [INCREMENT_SHOPCAR__ITEM] (state, productObj) {
       state.cars.some((item, idx) => {
@@ -45,6 +44,7 @@ export default {
           state.cars[idx].count += productObj[1]
         }
       })
+      localStorage.setItem('car', JSON.stringify(state.cars))
     }
   },
   actions: {// stock_quantity
