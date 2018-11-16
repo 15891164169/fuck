@@ -39,7 +39,7 @@
       </router-link>
       <router-link to="/cart">
         <span class="mui-icon-extra mui-icon-extra-cart">
-          <span class="tabber-badge">0</span>
+          <span class="tabber-badge">{{ allCount }}</span>
         </span>
         <span class="tabber-link">购物车</span>
       </router-link>
@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 export default {
   name: 'App',
   watch: {
@@ -63,7 +63,8 @@ export default {
   computed: {
     ...mapState({
       headText: state => state.lunbo.headText
-    })
+    }),
+    ...mapGetters(['allCount'])
   }
 }
 </script>

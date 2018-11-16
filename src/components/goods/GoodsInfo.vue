@@ -21,7 +21,7 @@
             </p>
           <p class="btn-box">
             <mt-button type="primary" size="small">立即购买</mt-button>
-            <mt-button type="danger" size="small" @click="addToShopCar()">加入购物车</mt-button>
+            <mt-button type="danger" size="small" @click="addtoshopcart([goodsinfo, num])">加入购物车</mt-button>
           </p>
         </div>
       </div>
@@ -55,6 +55,8 @@
 import swiper from '@/components/common/swiper.vue'
 import goodsinfonumbox from '@/components/common/goodsinfo-numbox.vue'
 
+import { mapActions } from 'vuex'
+
 import { getthumimages, getgoodsinfo } from '@/axios/api.js'
 export default {
   name: 'Goodsinfo',
@@ -64,7 +66,8 @@ export default {
       lunboData: [],
       goodsinfo: [],
       ballFlag: false,
-      num: 1
+      num: 1,
+      good: {}
     }
   },
   created () {
@@ -72,6 +75,10 @@ export default {
     this.getgoodsinfo({id: this.id})
   },
   methods: {
+    test () {
+      console.log(this.num)
+    },
+    ...mapActions(['addtoshopcart']),
     getthumimages (idx) {
       getthumimages(idx).then(res => {
         res.forEach(item => {
@@ -92,9 +99,6 @@ export default {
     goComment (id) {
       this.$router.push({ name: 'GoodsComment', params: id })
     },
-    addToShopCar () {
-      this.ballFlag = !this.ballFlag
-    },
     beforeEnter (el) {
       el.style.transform = 'translate(0,0)'
       // console.log(el.getBoundingClientRect())
@@ -111,7 +115,6 @@ export default {
       this.ballFlag = !this.ballFlag
     },
     getNum (data) {
-      console.log(data)
       this.num = data
     }
   },
