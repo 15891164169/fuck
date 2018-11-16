@@ -5,7 +5,7 @@
 
         <li v-for="(list, index) in newslists" :key="index" class="mui-table-view-cell mui-media">
           <router-link :to="'/home/newsinfo/'+ list.id">
-            <img class="mui-media-object mui-pull-left" src="@/assets/logo.png">
+            <img class="mui-media-object mui-pull-left" src="@/assets/tupian.png">
             <div class="mui-media-body">
               <p class="text">{{ list.title }}</p>
               <p class="mui-ellipsis">

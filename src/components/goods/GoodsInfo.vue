@@ -97,10 +97,11 @@ export default {
     },
     beforeEnter (el) {
       el.style.transform = 'translate(0,0)'
-      console.log(el.getBoundingClientRect())
+      // console.log(el.getBoundingClientRect())
     },
     enter (el, done) {
-      // el.offsetWidth
+      el.offsetWidth// eslint-disable-line
+
       // console.log(this.$refs.ball.getBoundingClientRect().top)
       el.style.transform = 'translate(97px,246px)'
       el.style.transition = 'all 1s cubic-bezier(.58,.24,.84,.27)'

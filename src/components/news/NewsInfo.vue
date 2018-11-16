@@ -1,8 +1,11 @@
 <template>
   <div class="newsinfo">
     <h3>新闻标题</h3>
-    <span>大撒三大打算打算阿萨德爱的阿萨德</span>
-    <p v-html="newsinfo"></p>
+    <div class="info">
+      <span class="time">{{ newsinfo.add_time }}</span>
+      <span class="click">点击了:{{ newsinfo.click }}次</span>
+    </div>
+    <p v-html="newsinfo.content"></p>
   </div>
 </template>
 
@@ -13,17 +16,38 @@ export default {
   data () {
     return {
       id: this.$route.params.id,
-      newsinfo: ''
+      newsinfo: []
     }
   },
   created () {
     getnewsinfo({newid: this.id}).then(res => {
-      this.newsinfo = res[0].content
+      this.newsinfo = res[0]
     })
   }
 }
 </script>
 
-<style scoped>
-
+<style lang="less">
+.newsinfo {
+  padding: 4px;
+  h3 {
+    text-align: center;
+    color: #26a2ff;
+    padding: 10px;
+    font-weight: 700;
+  }
+  .info {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0 6px;
+    border-bottom: 1px solid #eee;
+    span {
+      font-size: 14px;
+      color: #222;
+    }
+  }
+  img {
+    width: 100%;
+  }
+}
 </style>
