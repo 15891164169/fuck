@@ -90,7 +90,7 @@ export default {
     getgoodsinfo (idx) {
       getgoodsinfo(idx).then(res => {
         this.goodsinfo = res[0]
-        // console.log(this.goodsinfo)
+        console.log(this.goodsinfo)
       })
     },
     goDesc (id) {

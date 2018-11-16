@@ -68,3 +68,10 @@ export const getgoodsinfo = data => {
     data
   })
 }
+
+export const getshopcarlist = data => {
+  return service({
+    url: 'goods/getshopcarlist/' + data.ids,
+    data
+  })
+}

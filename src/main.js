@@ -17,12 +17,13 @@ import '@/lib/mui/fonts/icons-extra.css'
 import VuePreview from 'vue-preview'
 
 // mint-ui
-import { Header, Swipe, SwipeItem, Lazyload, Button } from 'mint-ui'
+import { Header, Swipe, SwipeItem, Lazyload, Button, Switch } from 'mint-ui'
 
 Vue.component(Header.name, Header)
 Vue.component(Swipe.name, Swipe)
 Vue.component(SwipeItem.name, SwipeItem)
 Vue.component(Button.name, Button)
+Vue.component(Switch.name, Switch)
 Vue.use(Lazyload, {
   preLoad: 2,
   loading: require('./assets/test.gif'),

@@ -21,8 +21,12 @@ export default {
       })
       return count
     },
-    indexCount (state, productObj) {
-      console.log(productObj)
+    goodsCount (state) {
+      let coutObj = {}
+      state.cars.forEach(item => {
+        coutObj[item.id] = item.count
+      })
+      return coutObj
     }
   },
   mutations: {
