@@ -26,7 +26,7 @@ Vue.component(Button.name, Button)
 Vue.use(Lazyload, {
   preLoad: 2,
   loading: require('./assets/test.gif'),
-  error: require('./assets/test.png'),
+  error: require('./assets/tupian.png'),
   attempt: 1
 })
 
