@@ -24,6 +24,7 @@ Vue.component(Swipe.name, Swipe)
 Vue.component(SwipeItem.name, SwipeItem)
 Vue.component(Button.name, Button)
 Vue.component(Switch.name, Switch)
+
 Vue.use(Lazyload, {
   preLoad: 2,
   loading: require('./assets/test.gif'),

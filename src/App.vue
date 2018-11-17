@@ -1,30 +1,16 @@
 <template>
   <div id="app">
-    <mt-header title="headText"></mt-header>
+    <mt-header title="headText">
+      <span v-show="showBack" slot="left" @click="goBack">
+        <mt-button icon="back">返回</mt-button>
+      </span>
+    </mt-header>
 
     <!-- app展示内容区域 -->
 
     <!-- <transition name="fade-tranx"> -->
       <router-view  class="content"></router-view>
     <!-- </transition> -->
-    <!-- <nav class="mui-bar mui-bar-tab">
-      <a class="mui-tab-item mui-active" href="#tabbar">
-        <span class="mui-icon mui-icon-home"></span>
-        <span class="mui-tab-label">首页</span>
-      </a>
-      <a class="mui-tab-item" href="#tabbar-with-chat">
-        <span class="mui-icon mui-icon-email"></span>
-        <span class="mui-tab-label">消息</span>
-      </a>
-      <a class="mui-tab-item" href="#tabbar-with-contact">
-        <span class="mui-icon mui-icon-contact"><span class="mui-badge">0</span></span>
-        <span class="mui-tab-label">通讯录</span>
-      </a>
-      <a class="mui-tab-item" href="#tabbar-with-map">
-        <span class="mui-icon mui-icon-gear"></span>
-        <span class="mui-tab-label">设置</span>
-      </a>
-    </nav> -->
 
     <!-- app底部区域 -->
 
@@ -55,9 +41,17 @@
 import { mapState, mapGetters } from 'vuex'
 export default {
   name: 'App',
+  data () {
+    return {
+      showBack: false
+    }
+  },
+  created () {
+    this.showBack = !(this.$route.path === '/home')
+  },
   watch: {
-    '$route' () {
-      // console.log(this.$route)
+    '$route' (newVal) {
+      this.showBack = !(newVal.path === '/home')
     }
   },
   computed: {
@@ -65,6 +59,11 @@ export default {
       headText: state => state.lunbo.headText
     }),
     ...mapGetters(['allCount'])
+  },
+  methods: {
+    goBack () {
+      this.$router.go(-1)
+    }
   }
 }
 </script>

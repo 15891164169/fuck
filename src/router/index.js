@@ -60,6 +60,7 @@ export default new Router({
     },
     {
       path: '/home/goodslist',
+      name: 'GoodsList',
       component: GoodsList
     },
     {

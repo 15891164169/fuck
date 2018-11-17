@@ -17,7 +17,7 @@ export default {
     }
   },
   mounted () {
-    // mui('.mui-numbox').numbox()
+    mui('.mui-numbox').numbox()
   },
   watch: {
     'maxNum' (newVal, oldVal) {

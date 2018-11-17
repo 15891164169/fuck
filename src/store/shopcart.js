@@ -1,4 +1,4 @@
-import { CREATE_SHOPCAR__ITEM, INCREMENT_SHOPCAR__ITEM, DECREMENT_SHOPCAR__ITEM, DELATE_SHOPCAR__ITEM } from './mutation-types.js'
+import { CREATE_SHOPCAR__ITEM, INCREMENT_SHOPCAR__ITEM, DECREMENT_SHOPCAR__ITEM, DELATE_SHOPCAR__ITEM, SELECT_SWITCH_TYPE } from './mutation-types.js'
 
 // const cart = {
 //   id: 87,
@@ -28,6 +28,28 @@ export default {
         coutObj[item.id] = item.count
       })
       return coutObj
+    },
+
+    selectswitch (state) {
+      let selObj = {}
+      state.cars.forEach(item => {
+        selObj[item.id] = item.selected
+      })
+      return selObj
+    },
+
+    countAndAmount (state) {
+      let acoutObj = {
+        amount: 0,
+        count: 0
+      }
+      state.cars.forEach(item => {
+        if (item.selected) {
+          acoutObj.count += parseInt(item.count)
+          acoutObj.amount += parseInt(item.count) * parseInt(item.price)
+        }
+      })
+      return acoutObj
     }
   },
   mutations: {
@@ -67,36 +89,51 @@ export default {
         }
       })
       localStorage.setItem('car', JSON.stringify(state.cars))
+    },
+
+    [SELECT_SWITCH_TYPE] (state, select) {
+      console.log(state.cars)
+      state.cars.some((item, idx) => {
+        if (item.id === select[0]) {
+          item.selected = select[1]
+          return true
+        }
+      })
+      localStorage.setItem('car', JSON.stringify(state.cars))
     }
   },
   actions: {// stock_quantity
-    addtoshopcart ({ state, commit }, productObj) {
+    addtoshopcart (context, productObj) {
       // console.log(productObj[0].id)
       if (productObj[0].stock_quantity > 0) {
-        const cartItem = state.cars.find(item => item.id === productObj[0].id)
+        const cartItem = context.state.cars.find(item => item.id === productObj[0].id)
         // console.log('有库存')
         if (!cartItem) {
           // create productObj item
           // console.log('车里没')
-          commit('CREATE_SHOPCAR__ITEM', productObj)
+          context.commit('CREATE_SHOPCAR__ITEM', productObj)
         } else {
           // increase productObj quantity
           // console.log('车里有')
-          commit('INCREMENT_SHOPCAR__ITEM', productObj)
+          context.commit('INCREMENT_SHOPCAR__ITEM', productObj)
         }
       }
     },
 
-    increaseshopcart ({ state, commit }, productObj) {
-      commit('INCREMENT_SHOPCAR__ITEM', productObj)
+    increaseshopcart (context, productObj) {
+      context.commit('INCREMENT_SHOPCAR__ITEM', productObj)
     },
 
-    decreaseshopcart ({ state, commit }, productObj) {
-      commit('DECREMENT_SHOPCAR__ITEM', productObj)
+    decreaseshopcart (context, productObj) {
+      context.commit('DECREMENT_SHOPCAR__ITEM', productObj)
     },
 
-    delatecartitem ({ state, commit }, productId) {
-      commit('DELATE_SHOPCAR__ITEM', productId)
+    delatecartitem (context, productId) {
+      context.commit('DELATE_SHOPCAR__ITEM', productId)
+    },
+
+    selectswitchchange (context, select) {
+      context.commit('SELECT_SWITCH_TYPE', select)
     }
   }
 }
