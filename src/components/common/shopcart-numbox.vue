@@ -1,8 +1,9 @@
 <template>
-  <div class="mui-numbox" data-numbox-min="1" data-numbox-max="9">
-    <button class="mui-btn mui-btn-numbox-minus" type="button" @click="addtoshopcart(cal)">-</button>
+  <div class="mui-numbox" data-numbox-min="1" data-numbox-max="100">
+    <button class="mui-btn mui-btn-numbox-minus" type="button" @click="decreaseshopcart([item, 1])">-</button>
     <input id="test" class="mui-input-numbox" readonly type="number" v-model="value" ref="actnum">
-    <button class="mui-btn mui-btn-numbox-plus" type="button" @click="addtoshopcart(cal)">+</button>
+    <button class="mui-btn mui-btn-numbox-plus" type="button" @click="increaseshopcart([item, 1])">+</button>
+    <!-- <button class="mui-btn mui-btn-numbox-plus" type="button" @click="test()">+</button> -->
   </div>
 </template>
 
@@ -19,22 +20,11 @@ export default {
   },
   mounted () {
     mui('.mui-numbox').numbox()
-    this.cal
-  },
-  computed: {
-    cal () {
-      let obj = {}
-      this.item.forEach((item, k, v) => {
-        // obj[k] = item[k]
-        console.log(item)
-        console.log(k)
-        console.log(v)
-      })
-      return obj
-    }
   },
   methods: {
-    ...mapActions(['addtoshopcart'])
+    test () {},
+    ...mapActions(['increaseshopcart']),
+    ...mapActions(['decreaseshopcart'])
   }
 }
 </script>

@@ -1,4 +1,4 @@
-import { ADD_TO_SHOP_CART, CREATE_SHOPCAR__ITEM, INCREMENT_SHOPCAR__ITEM } from './mutation-types.js'
+import { CREATE_SHOPCAR__ITEM, INCREMENT_SHOPCAR__ITEM, DECREMENT_SHOPCAR__ITEM, DELATE_SHOPCAR__ITEM } from './mutation-types.js'
 
 // const cart = {
 //   id: 87,
@@ -21,6 +21,7 @@ export default {
       })
       return count
     },
+
     goodsCount (state) {
       let coutObj = {}
       state.cars.forEach(item => {
@@ -30,9 +31,6 @@ export default {
     }
   },
   mutations: {
-    [ADD_TO_SHOP_CART] (state, productObj) {
-      state.car = productObj
-    },
     [CREATE_SHOPCAR__ITEM] (state, productObj) {
       state.cars.push({
         id: productObj[0].id,
@@ -42,10 +40,30 @@ export default {
       })
       localStorage.setItem('car', JSON.stringify(state.cars))
     },
+
     [INCREMENT_SHOPCAR__ITEM] (state, productObj) {
       state.cars.some((item, idx) => {
         if (item.id === productObj[0].id) {
           state.cars[idx].count += productObj[1]
+        }
+      })
+      localStorage.setItem('car', JSON.stringify(state.cars))
+    },
+
+    [DECREMENT_SHOPCAR__ITEM] (state, productObj) {
+      state.cars.some((item, idx) => {
+        if (item.id === productObj[0].id) {
+          state.cars[idx].count -= 1
+        }
+      })
+      localStorage.setItem('car', JSON.stringify(state.cars))
+    },
+
+    [DELATE_SHOPCAR__ITEM] (state, productId) {
+      state.cars.some((item, idx) => {
+        if (item.id === productId) {
+          state.cars.splice(idx, 1)
+          return true
         }
       })
       localStorage.setItem('car', JSON.stringify(state.cars))
@@ -54,7 +72,6 @@ export default {
   actions: {// stock_quantity
     addtoshopcart ({ state, commit }, productObj) {
       // console.log(productObj[0].id)
-      // commit('ADD_TO_SHOP_CART', productObj)
       if (productObj[0].stock_quantity > 0) {
         const cartItem = state.cars.find(item => item.id === productObj[0].id)
         // console.log('有库存')
@@ -68,6 +85,18 @@ export default {
           commit('INCREMENT_SHOPCAR__ITEM', productObj)
         }
       }
+    },
+
+    increaseshopcart ({ state, commit }, productObj) {
+      commit('INCREMENT_SHOPCAR__ITEM', productObj)
+    },
+
+    decreaseshopcart ({ state, commit }, productObj) {
+      commit('DECREMENT_SHOPCAR__ITEM', productObj)
+    },
+
+    delatecartitem ({ state, commit }, productId) {
+      commit('DELATE_SHOPCAR__ITEM', productId)
     }
   }
 }

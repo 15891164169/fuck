@@ -13,7 +13,7 @@
               <p>
                 <span class="price">￥{{ item.sell_price }}</span>
                 <cartNumbox :count="goodsCount[item.id]" :item="item"></cartNumbox>
-                <i class="del">删除</i>
+                <i class="del" @click="delatecartitem(item.id)">删除</i>
               </p>
             </div>
           </div>
@@ -36,7 +36,7 @@
 <script>
 import cartNumbox from '@/components/common/shopcart-numbox.vue'
 import { getshopcarlist } from '@/axios/api.js'
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapActions, mapGetters } from 'vuex'
 export default {
   name: 'Cart',
   data () {
@@ -52,12 +52,12 @@ export default {
       cars: state => state.shopcart.cars
     }),
     ...mapGetters(['goodsCount']),
+    ...mapActions(['delatecartitem']),
     idStr () {
       let idArr = []
       this.cars.forEach(item => {
         idArr.push(item.id)
       })
-      console.log(idArr)
       return idArr.join(',')
     }
   },
@@ -66,6 +66,7 @@ export default {
       if (this.idStr.length === 0) return
       getshopcarlist({ids: this.idStr}).then(res => {
         this.carlist = res
+        console.log(res)
       })
     }
   },
