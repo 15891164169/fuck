@@ -21,7 +21,7 @@
             </p>
           <p class="btn-box">
             <mt-button type="primary" size="small">立即购买</mt-button>
-            <mt-button type="danger" size="small" @click="addtoshopcart([goodsinfo, num])">加入购物车</mt-button>
+            <mt-button type="danger" size="small" @click="[addtoshopcart([goodsinfo, num]), cos()]">加入购物车</mt-button>
           </p>
         </div>
       </div>
@@ -75,7 +75,7 @@ export default {
     this.getgoodsinfo({id: this.id})
   },
   methods: {
-    test () {
+    cos () {
       console.log(this.num)
     },
     ...mapActions(['addtoshopcart']),

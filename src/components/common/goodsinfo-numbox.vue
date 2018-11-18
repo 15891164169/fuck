@@ -22,7 +22,6 @@ export default {
   watch: {
     'maxNum' (newVal, oldVal) {
       mui('.mui-numbox').numbox().setOption('max', newVal)
-      this.val = newVal
     }
   },
   methods: {
@@ -30,6 +29,7 @@ export default {
       this.$emit('sendNum', parseInt(this.$refs.actnum.value))
     },
     changeVal () {
+      console.log(mui('.mui-numbox').numbox().getValue())
       parseInt(this.$refs.actnum.value) >= this.cal ? this.$emit('sendNum', this.val) : this.$emit('sendNum', parseInt(this.$refs.actnum.value))
     }
   }

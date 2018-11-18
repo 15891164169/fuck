@@ -56,7 +56,7 @@ export default {
   methods: {
     // 图片缩略图关闭触发的方法
     handleClose () {
-      console.log('close event')
+      // console.log('close event')
     }
   }
 }
@@ -81,8 +81,6 @@ export default {
     color: rgb(185, 181, 181);
     display: flex;
     justify-content: space-between;
-    .time {}
-    .cick {}
   }
   .prev-box {
     .my-gallery {
@@ -91,6 +89,7 @@ export default {
       justify-content: space-between;
       figure {
         padding: 10px 10px;
+        margin: 0;
         img {
           width: 150px;
         }

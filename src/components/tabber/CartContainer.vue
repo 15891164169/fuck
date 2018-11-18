@@ -38,8 +38,8 @@
         </div>
       </div>
     </div>
-    {{selectswitch}}
-    {{countAndAmount}}
+    <!-- {{selectswitch}}
+    {{countAndAmount}} -->
   </div>
 </template>
 

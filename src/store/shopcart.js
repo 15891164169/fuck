@@ -92,7 +92,6 @@ export default {
     },
 
     [SELECT_SWITCH_TYPE] (state, select) {
-      console.log(state.cars)
       state.cars.some((item, idx) => {
         if (item.id === select[0]) {
           item.selected = select[1]
