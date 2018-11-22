@@ -2,7 +2,7 @@ import { LUNBO_STATUS } from './mutation-types.js'
 
 export default {
   state: {
-    headText: 'app'
+    headText: 'vue app'
   },
   mutations: {
     [LUNBO_STATUS] (state, str) {

@@ -5,6 +5,9 @@ import App from './App'
 import router from './router'
 import store from '@/store/index.js'
 
+// vue-scroller
+import VueScroller from 'vue-scroller'
+
 // reset.css
 import '@/assets/css/reset.css'
 import '@/assets/css/common.css'
@@ -33,6 +36,7 @@ Vue.use(Lazyload, {
 })
 
 Vue.use(VuePreview)
+Vue.use(VueScroller)
 
 Vue.config.productionTip = false
 

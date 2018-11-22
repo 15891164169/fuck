@@ -59,11 +59,10 @@ export default {
 
 <style lang="less" scoped>
 .goodslist {
-  padding: 10px;
   .list-items {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     .list-item {
       display: flex;
       flex-direction: column;

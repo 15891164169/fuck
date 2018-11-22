@@ -27,8 +27,6 @@ npm run e2e
 npm test
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-
 ## axios 封装
 axios
 https://www.jb51.net/article/145341.htm
@@ -41,4 +39,8 @@ https://gitee.com/vsdeveloper/vue110/tree/master
 http://yun.itheima.com/course/335.html?0807lckj
 网盘
 https://pan.baidu.com/s/1NKOZabLU7HjUKof56jcMNw 提取码: iwb3
-https://pan.baidu.com/s/1Uwja4t4ZE7cmm-l0xufkFg 密码： 密码：8v9c
+https://pan.baidu.com/s/1Uwja4t4ZE7cmm-l0xufkFg 密码: 8v9c
+
+# 有个输入框组件的bug，当你在输入框直接输入的商品数量大于库存时，点击加入购物车，会把你输入的数量加入到购物车，而不是商品的最大库存。
+
+## 控制台一直报错 Uncaught TypeError: Cannot read property 'tagName' of null  我也不知道为啥

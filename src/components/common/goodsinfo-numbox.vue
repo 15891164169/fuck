@@ -17,6 +17,7 @@ export default {
     }
   },
   mounted () {
+    mui.init()
     mui('.mui-numbox').numbox()
   },
   watch: {

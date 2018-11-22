@@ -90,8 +90,8 @@ export default {
 .photolist {
   -position: relative;
   .nav-wrapper {
-    -position: absolute;
-    -height: 100px;
+    position: absolute;
+    z-index: 99;
     background-color: #fff;
     .nav-list {
       display: flex;
@@ -119,7 +119,7 @@ export default {
     }
   }
   .img-wrapper {
-    -margin-top: 34px;
+    margin-top: 40px;
     .img-lists {
       padding: 10px;
       box-sizing: border-box;

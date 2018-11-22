@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <mt-header title="headText">
+    <mt-header :title="headText">
       <span v-show="showBack" slot="left" @click="goBack">
         <mt-button icon="back">返回</mt-button>
       </span>
@@ -88,11 +88,14 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
+  .mint-header {
+    z-index: 999;
+  }
   .content {
     height: 100%;
     flex: 1;
     overflow-x: hidden;
-    overflow-y: auto;
+    -overflow-y: auto;
   }
   .tabber {
     display: flex;
@@ -101,6 +104,7 @@ export default {
     line-height: 50px;
     background-color: rgb(218, 218, 218);
     font-size: 12px;
+    z-index: 999;
     a {
       flex: 1;
       display: flex;
